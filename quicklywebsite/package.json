@@ -53,10 +53,10 @@
     "ts-jest": "^29.1.2"
   },
   "type": "module",
+  "testEnvironment": "jsdom",
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
-  },
-  "testEnvironment": "jsdom"
+  }
 }

@@ -28,9 +28,18 @@ const Profile = () => {
       if (sessionToken && sessionToken !== "") {
         try {
           const response = await getUser(sessionToken);
-          setUser(response);
-        } catch (error) {}
+          if (response) {
+            setUser(response);
+          } else {
+            localStorage.clear();
+            navigate("/*", { replace: true });
+          }
+        } catch (error) {
+          localStorage.clear();
+          navigate("/*", { replace: true });
+        }
       } else {
+        localStorage.clear();
         navigate("/*", { replace: true });
       }
       setLoading(false);

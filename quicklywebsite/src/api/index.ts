@@ -24,7 +24,7 @@ export const createUser = async (
     });
 };
 
-export const getUser = async (token: string): Promise<UserResponse> => {
+export const getUser = async (token: string): Promise<UserResponse | undefined> => {
   return await axios
     .get(`${process.env.REACT_APP_QUICKLY_BASE_URL}/auth/user`, {
       headers: {
@@ -37,7 +37,7 @@ export const getUser = async (token: string): Promise<UserResponse> => {
       }
     })
     .catch((error: any) => {
-      return error.response.data;
+      return undefined;
     });
 };
 

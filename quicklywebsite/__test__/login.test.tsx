@@ -8,12 +8,12 @@ jest.mock("../src/api", () => ({
 
 describe("LoginPage component", () => {
   test("navigates to profile page when login button is pressed", async () => {
-    render(
+    const { container } = render(
       <BrowserRouter>
         <LoginPage />
       </BrowserRouter>
     );
-
+    expect(container).toBeInTheDocument();
     fireEvent.change(screen.getByLabelText("Email"), {
       target: { value: "test@user.com" },
     });
