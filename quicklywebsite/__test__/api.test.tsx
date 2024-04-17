@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { createUser, getUser, loginUser } from "../src/api/index";
 
 jest.mock("axios");
@@ -20,7 +20,7 @@ describe("Quickly API", () => {
         early_pay_intent: true,
         expected_activity: "Get my invoices paid early",
       },
-      early_pay_intent: true,
+      early_pay_intent: "true",
       industry: {
         value: "Apps",
         label: "Apps",
@@ -33,7 +33,7 @@ describe("Quickly API", () => {
       business_registration: "corporation",
       phone: "4035550987",
       business_number: "654987321",
-      has_trade_name: false,
+      has_trade_name: "false",
       legal_name: "Sample Company",
       expected_activity: "Get my invoices paid early",
     };
@@ -41,9 +41,11 @@ describe("Quickly API", () => {
       success: true,
       message: "Signup Succesful!",
       token: "mockToken",
-      user: userInfo
+      user: userInfo,
     };
-    axios.post.mockResolvedValueOnce({ data: mockResponseData });
+    (
+      axios.post as jest.MockedFunction<typeof axios.post>
+    ).mockResolvedValueOnce({ data: mockResponseData } as AxiosResponse<any>);
 
     const response = await createUser(userInfo, companyInfo);
 
@@ -81,9 +83,10 @@ describe("Quickly API", () => {
         address_line_1: null,
       },
     };
-    axios.get.mockResolvedValueOnce({
+
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValueOnce({
       data: { success: true, user: mockResponseData },
-    });
+    } as AxiosResponse<any>);
 
     const response = await getUser(token);
 
@@ -101,7 +104,10 @@ describe("Quickly API", () => {
       success: true,
       token: "mockToken",
     };
-    axios.post.mockResolvedValueOnce({ data: mockResponseData });
+
+    (
+      axios.post as jest.MockedFunction<typeof axios.post>
+    ).mockResolvedValueOnce({ data: mockResponseData } as AxiosResponse<any>);
 
     const response = await loginUser(email, password);
 

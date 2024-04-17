@@ -1,14 +1,14 @@
-import { render, fireEvent, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react"; // Import screen directly
+
 import LoginPage from "../src/pages/LoginPage";
 import { BrowserRouter } from "react-router-dom";
-
-jest.mock("../api", () => ({
+jest.mock("../src/api", () => ({
   loginUser: jest.fn().mockResolvedValue({ success: true, token: "mockToken" }),
 }));
 
 describe("LoginPage component", () => {
   test("navigates to profile page when login button is pressed", async () => {
-    const { screen } = render(
+    render(
       <BrowserRouter>
         <LoginPage />
       </BrowserRouter>

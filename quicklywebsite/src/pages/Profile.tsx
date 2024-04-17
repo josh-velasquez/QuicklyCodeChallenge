@@ -68,41 +68,52 @@ const Profile = () => {
             >
               <Paper elevation={3} sx={{ p: 3, width: 400 }}>
                 <Typography variant="h5" gutterBottom>
-                  Profile
+                  {user.avatar_url && (
+                    <img
+                      src={user.avatar_url}
+                      alt="Avatar"
+                      style={{
+                        width: 50,
+                        height: 50,
+                        marginRight: 20,
+                        borderRadius: "50%",
+                      }}
+                    />
+                  )}
+                  {user.full_name}
                 </Typography>
                 <Divider sx={{ marginBottom: 3 }} />
                 <div style={{ marginBottom: 12 }}>
                   <Typography variant="body1" gutterBottom>
-                    <strong>Full Name:</strong> {user?.full_name}
+                    <strong>Email:</strong> {user.email}
                   </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Email:</strong> {user?.email}
-                  </Typography>
-                  <Typography variant="body1" gutterBottom>
-                    <strong>Phone:</strong> {user?.phone}
-                  </Typography>
+                  {user.phone && (
+                    <Typography variant="body1" gutterBottom>
+                      <strong>Phone:</strong> {user.phone}
+                    </Typography>
+                  )}
                 </div>
                 <Divider />
                 <Typography variant="h6" gutterBottom>
                   Company
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  <strong>Name:</strong> {user?.Company.name}
+                  <strong>Name:</strong> {user.Company.name}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  <strong>Type:</strong> {user?.Company.business_type}
+                  <strong>Type:</strong> {user.Company.business_type}
                 </Typography>
                 {user?.Company.phone && (
                   <Typography variant="body1" gutterBottom>
-                    <strong>Phone:</strong> {user?.Company.phone}
+                    <strong>Phone:</strong> {user.Company.phone}
                   </Typography>
                 )}
                 <Typography variant="body1" gutterBottom>
-                  <strong>Email:</strong> {user?.Company.primary_email}
+                  <strong>Email:</strong> {user.Company.primary_email}
                 </Typography>
                 {user?.Company.website && (
                   <Typography variant="body1" gutterBottom>
-                    <strong>Website:</strong> {user?.Company.website}
+                    <strong>Website:</strong> {user.Company.website}
                   </Typography>
                 )}
                 <Typography variant="body1" gutterBottom>
@@ -111,11 +122,11 @@ const Profile = () => {
                 </Typography>
                 {user?.Company.address_line_1 && (
                   <Typography variant="body1" gutterBottom>
-                    <strong>Address:</strong> {user?.Company.address_line_1}
+                    <strong>Address:</strong> {user.Company.address_line_1}
                   </Typography>
                 )}
                 <Typography variant="body1" gutterBottom>
-                  <strong>Activity:</strong> {user?.Company.expected_activity}
+                  <strong>Activity:</strong> {user.Company.expected_activity}
                 </Typography>
               </Paper>
             </div>
